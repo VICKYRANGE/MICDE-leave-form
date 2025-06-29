@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <style>
+    body {
+      background-color: #e7eef3;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+      color: #800000;
+    }
+    form {
+      background-color: #fff;
+      padding: 30px;
+      border: 2px solid #cc0000;
+      display: inline-block;
+      border-radius: 10px;x
+    }
+    input[type="text"], input[type="password"] {
+      padding: 10px;
+      width: 250px;
+      margin-bottom: 15px;
+      border: 1px solid #cc0000;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #cc0000;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #990000;
+    }
+  </style>
+</head>
+<body>
+  <h1>Leave Management Login</h1>
+  <form id="loginForm"
+    <div>
+      <input type="text" id="username" placeholder="Username" required />
+    </div>
+    <div>
+      <input type="password" id="password" placeholder="Password" required />
+    </div>
+    <button type="submit">Login</button>
+  </form>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+
+      if (user === "FRANK" && pass === "@frank") {
+        window.location.href = "newtask.html";
+      } else {
+        alert("Invalid login. Please try again.");
+      }
+    });
+  </script>
+
+<div>
+<a href="forgot_password.html" class="forgot-password">Forgot Password?</a>
+    </div>
+
+</body>
+</html>

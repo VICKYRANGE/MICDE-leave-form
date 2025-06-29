@@ -1,0 +1,488 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    background-image:;
+}
+
+.navigation {
+    position: fixed;
+    width: 200px;
+    height: 100vh;
+    background: #111;
+    padding-top: 20px;
+}
+
+.navigation ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navigation ul li {
+    position: relative;
+    width: 100%;
+}
+
+.navigation ul li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    padding: 15px;
+    transition: 0.3s;
+}
+
+.navigation ul li.active a,
+.navigation ul li a:hover {
+    background: #333;
+}
+
+.navigation ul li a .icon {
+    margin-right: 10px;
+}
+
+.content {
+    margin-left: 220px;
+    padding: 20px;
+}
+
+.content-section {
+    display: none;
+}
+
+.content-section.active {
+    display: block;
+}
+
+.indicator {
+    width: 5px;
+    height: 50px;
+    background: #0f0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: top 0.3s;
+}
+
+
+.leave-form {
+    max-width: 500px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.leave-form label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.leave-form input,
+.leave-form select,
+.leave-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.leave-form button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #0a7cff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.leave-form button:hover {
+    background: #005ecc;
+}
+
+body {
+            font-family: Arial, sans-serif;
+            scroll-behavior: smooth;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: #333;
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav a {
+            color: white;
+            margin-right: 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        section {
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        form label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+button[type="reset"] {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button[type="reset"]:hover {
+    background-color: #c82333;
+}
+
+        footer {
+            text-align: center;
+            font-size: 14px;
+            padding: 10px;
+            color: #666;
+            background-color: #21b8e7;
+            border-top: 1px solid #ccc;
+        }
+
+  .custom-image {
+    width: 10px;
+    height: auto; 
+    display: block;
+    margin: 30px auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+      
+.MICDElogo {
+    width: 10px;
+    height: auto;
+    display: block;
+    margin: 20px auto 10px auto; 
+    border: none; 
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.staff-leave-form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.staff-leave-form label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.staff-leave-form input,
+.staff-leave-form select,
+.staff-leave-form textarea {
+    padding: 8px;
+    font-size: 14px;
+    margin-top: 4px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.staff-leave-form button {
+    margin-top: 15px;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.staff-leave-form button[type="submit"] {
+    background-color: #297a39;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.staff-leave-form button[type="reset"] {
+   background-color: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f1f1f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 300px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    width: 100%;
+    background-color: #28a745;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+.forgot-password {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+}
+
+.navigation {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 250px;
+  background-color: #2e3b4e;
+  padding-top: 20px;
+  z-index: 1000;
+}
+
+.navigation ul {
+  list-style: none;
+}
+
+.navigation .list {
+  padding: 15px 20px;
+}
+
+.navigation .list a {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.navigation .list a:hover {
+  background-color: #1e2a38;
+  border-radius: 8px;
+}
+
+.navigation .icon {
+  margin-right: 10px;
+}
+
+.navigation .text {
+  font-size: 16px;
+}
+
+.navigation .list.active a {
+  background-color: #1e2a38;
+  border-radius: 8px;
+}
+
+
+.content-section {
+  display: block;
+}
+
+.content {
+  margin-left: 260px;
+  padding: 20px;
+  max-height: 100vh;
+  overflow-y: auto;
+}
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: sans-serif;
+  background-color: #111;
+  color: white;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding-top: 20vh;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #0fcfec;
+  padding: 0;
+  margin: 0;
+}
+
+.navigation {
+  width: 200px;
+  background: #004d4d;
+  float: left;
+  height: 100vh;
+  padding-top: 20px;
+}
+
+.navigation ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.navigation ul li {
+  padding: 10px;
+}
+
+.navigation ul li a {
+  color: rgb(3, 63, 48);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.content {
+  margin-left: 220px;
+  padding: 20px;
+}
+
+
+.micde-logo {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+
+.content h1, h2, h3, p {
+  text-align: center;
+}
+
+<style>
+  body { font-family: Arial, sans-serif; margin:0; background: #f8f9fa; color:#333; }
+  .sidebar { width: 250px; background: #004d4d; position: fixed; top:0; left:0; height:100%; padding:1rem; color: white; }
+  .sidebar h2 { color: white; margin-bottom: 1.5rem; }
+  .sidebar a { display: flex; align-items: center; padding:0.5rem; border-radius:0.5rem; color: white; text-decoration:none; margin-bottom: 0.5rem; }
+  .sidebar a:hover { background: rgba(255,255,255,0.2); }
+  .sidebar a ion-icon { margin-right:0.5rem; }
+  .main { margin-left:250px; padding:2rem; }
+  h1 { font-size:1.8rem; margin-bottom:1rem; color:#004d4d; }
+
+  .dashboard-summary { display:flex; gap:1rem; margin-bottom:1rem; }
+  .dashboard-summary .card {
+    padding:1rem;
+    background:#ffffff;
+    border-radius:0.5rem;
+    border:1px solid #ddd;
+    flex:1;
+    text-align:center;
+    font-weight:bold;
+    color:#333;
+  }
+
+  table { width:100%; border-collapse: collapse; background: #ffffff; border-radius:0.5rem; overflow:hidden; color:#333; }
+  table th, table td { padding:0.75rem; border-bottom:1px solid #ddd; }
+  table th { background:#f0f0f0; text-align:left; font-weight:bold; }
+  table tr:hover { background:#f9f9f9; }
+
+  .status-approved { color: green; font-weight:bold; }
+  .status-rejected { color: red; font-weight:bold; }
+  .status-pending { color: orange; font-weight:bold; }
+
+  .search-bar { margin-bottom:1rem; }
+  .search-bar input { padding:0.5rem; width:300px; border:1px solid #ccc; border-radius:0.3rem; }
+
+  .action-btns button { margin-right:0.25rem; padding:0.35rem 0.75rem; border:none; border-radius:0.3rem; cursor:pointer; }
+  .approve-btn { background: green; color:white; }
+  .reject-btn { background: red; color:white; }
+</style>

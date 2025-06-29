@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sidebar Menu</title>
+<link rel="stylesheet" href="style.css" />
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+
+<div class="navigation">
+  <ul>
+    <li class="list active"><a href="#" onclick="showSection('homeContent')"><ion-icon name="home-outline"></ion-icon><span>Home</span></a></li>
+    <li class="list"><a href="#" onclick="showSection('aboutContent')"><ion-icon name="information-circle-outline"></ion-icon><span>About Us</span></a></li>
+    <li class="list"><a href="#" onclick="showSection('applyContent')"><ion-icon name="document-text-outline"></ion-icon><span>Apply for Leave</span></a></li>
+    <li class="list"><a href="#" onclick="showSection('staffLeaveContent')"><ion-icon name="person-outline"></ion-icon><span>Apply for Leave (Staff)</span></a></li>
+  </ul>
+  <div class="indicator"></div>
+</div>
+
+<div class="content">
+
+  <div id="homeContent" class="content-section">
+    <img src="C:\users\lenovo\downloads\MICDE logo.PNG" alt="MICDE logo" class="micde-logo" />
+    <h1>Welcome to the Leave Application Portal</h1>
+    <p>This portal allows Heads of Departments and staff under H.O.Ds to submit official leave requests easily and efficiently.</p>
+  </div>
+
+  <div id="aboutContent" class="content-section" style="display: none;">
+    <img src="C:\users\lenovo\downloads\MICDE logo.PNG" alt="MICDE logo" class="micde-logo" />
+    <h2>About Us</h2>
+    <p>The State Department for ICT & Digital Economy is committed to supporting our staff with efficient leave management.</p>
+  </div>
+
+  <div id="applyContent" class="content-section" style="display: none;">
+    <img src="C:\users\lenovo\downloads\MICDE logo.PNG" alt="MICDE logo" class="micde-logo" />
+    <h3>LEAVE APPLICATION FORM FOR HEADS OF DEPARTMENTS</h3>
+    <form id="hod-leave-form" action="#" method="post">
+
+      <label for="name">Name</label><input type="text" id="name" name="name" required />
+      <label for="pno">P/NO</label><input type="text" id="pno" name="pno" required />
+      <label for="designation">Designation</label><input type="text" id="designation" name="designation" required />
+      <label for="leave_type">Type of Leave</label>
+      <select id="leave_type" name="leave_type" required>
+        <option value="annual">Annual Leave</option>
+        <option value="sick">Sick Leave</option>
+        <option value="maternity">Maternity Leave</option>
+        <option value="paternity">Paternity Leave</option>
+      </select>
+      <label for="leave_days">Days of Leave</label><input type="number" id="leave_days" name="leave_days" required />
+      <label for="leave_from">Leave From</label><input type="date" id="leave_from" name="leave_from" required />
+      <label for="leave_to">Leave To</label><input type="date" id="leave_to" name="leave_to" required />
+      <label for="last_leave_from">Last Leave From</label><input type="date" id="last_leave_from" name="last_leave_from" />
+      <label for="last_leave_to">Last Leave To</label><input type="date" id="last_leave_to" name="last_leave_to" />
+      <label for="balance_days">Leave Balance (days)</label><input type="number" id="balance_days" name="balance_days" />
+      <label for="address">Contact Address</label><textarea id="address" name="address"></textarea>
+      <label for="tel">Telephone</label><input type="tel" id="tel" name="tel" />
+      <label for="salary_option">Salary Payment Method</label>
+      <select id="salary_option" name="salary_option">
+        <option value="bank">Bank Account</option>
+        <option value="address">Mail Address</option>
+      </select>
+      <label for="payment_address">Payment Address</label><textarea id="payment_address" name="payment_address"></textarea>
+      <label for="officer_in_charge">Officer Handling Duties</label><input type="text" id="officer_in_charge" name="officer_in_charge" />
+      <label for="officer_date">Date</label><input type="date" id="officer_date" name="officer_date" />
+      <label for="officer_signature">Signature</label><input type="text" id="officer_signature" name="officer_signature" />
+      <label for="signature">Signature file</label><input type="file" id="signature" name="signature" accept=".jpg,.png" />
+      <label for="part2_date">Date</label><input type="date" id="part2_date" name="part2_date" />
+      <label for="part2_signature">Signature</label><input type="text" id="part2_signature" name="part2_signature" />
+      <label for="part2_signature_file">Signature file</label><input type="file" id="part2_signature_file" name="part2_signature_file" accept=".jpg,.png" />
+
+      <button type="submit">Submit</button>
+      <button type="reset">Reset</button>
+
+    </form>
+  </div>
+
+  <div id="staffLeaveContent" class="content-section" style="display: none;">
+    <img src="C:\users\lenovo\downloads\MICDE logo.PNG" alt="MICDE logo" class="micde-logo" />
+    <h2>LEAVE APPLICATION FORM FOR MEMBERS OF STAFF UNDER H.O.Ds</h2>
+    <form class="staff-leave-form" action="#" method="post">
+      <label for="staff_name">Full Name</label><input type="text" id="staff_name" name="staff_name" required />
+      <label for="staff_id">Staff ID</label><input type="text" id="staff_id" name="staff_id" required />
+      <label for="staff_department">Department</label><input type="text" id="staff_department" name="staff_department" required />
+      <label for="leave_type">Type of Leave</label>
+      <select id="leave_type" name="leave_type" required>
+        <option value="annual">Annual Leave</option>
+        <option value="sick">Sick Leave</option>
+        <option value="maternity">Maternity Leave</option>
+        <option value="paternity">Paternity Leave</option>
+      </select>
+      <label for="leave_days">Days of Leave</label><input type="number" id="leave_days" name="leave_days" required />
+      <label for="staff_leave_from">Leave From</label><input type="date" id="staff_leave_from" name="staff_leave_from" required />
+      <label for="staff_leave_to">Leave To</label><input type="date" id="staff_leave_to" name="staff_leave_to" required />
+      <label for="staff_reason">Reason</label><textarea id="staff_reason" name="staff_reason" rows="3" required></textarea>
+      <button type="submit">Submit</button>
+      <button type="reset">Reset</button>
+    </form>
+  </div>
+</div>
+
+
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script>
+  function showSection(id) {
+    document.querySelectorAll('.content-section').forEach((el) => el.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
+  }
+
+  const SUPABASE_URL = 'https://ayduvcxmluaetdfonvay.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF5ZHV2Y3htbHVhZXRkZm9udmF5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA2NjQ2MzIsImV4cCI6MjA2NjI0MDYzMn0.8AZXb4EnliycWurKJkkZxqeb2GHAok3YF0gqRqJFKHI';
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  async function handleHODSubmit(e) {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.target).entries());
+    const { error } = await supabase.from('hod_leaves').insert([data]);
+    if (error) {
+      alert('Error saving HOD leave: ' + error.message);
+      console.error(error);
+    } else {
+      alert('✅ HOD leave saved successfully.');
+      e.target.reset();
+    }
+  }
+
+  async function handleStaffSubmit(e) {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.target).entries());
+    const { error } = await supabase.from('staff_leaves').insert([data]);
+    if (error) {
+      alert('Error saving staff leave: ' + error.message);
+      console.error(error);
+    } else {
+      alert('✅ Staff leave saved successfully.');
+      e.target.reset();
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('hod-leave-form').addEventListener('submit', handleHODSubmit);
+    document.querySelector('form.staff-leave-form').addEventListener('submit', handleStaffSubmit);
+  });
+</script>
+
+</body>
+</html>

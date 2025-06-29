@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Admin Panel - Leave Applications</title>
+<link rel="stylesheet" href="style.css" />
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+  body { font-family: Arial, sans-serif; margin:0; background:#f8f9fa; color:#333; }
+  .sidebar { width:250px; background:#004d4d; position: fixed; top:0; left:0; height:100%; padding:1rem; color:white; }
+  .sidebar h2 { margin-bottom:1.5rem; }
+  .sidebar a { display:flex; align-items:center; padding:0.5rem; border-radius:0.5rem; color:white; text-decoration:none; margin-bottom:0.5rem; }
+  .sidebar a:hover { background:rgba(255,255,255,0.2); }
+  .sidebar a ion-icon { margin-right:0.5rem; }
+  .main { margin-left:250px; padding:2rem; }
+  h1 { font-size:1.8rem; margin-bottom:1rem; color:#004d4d; }
+  .dashboard-summary { display:flex; gap:1rem; margin-bottom:1rem; }
+  .dashboard-summary .card { padding:1rem; background:#ffffff; border:1px solid #ddd; flex:1; text-align:center; font-weight:bold; }
+  table { width:100%; border-collapse: collapse; background:white; border-radius:0.5rem; overflow:hidden; color:#333; }
+  table th, table td { padding:0.75rem; border-bottom:1px solid #ddd; }
+  table th { background:#f0f0f0; text-align:left; }
+  table tr:hover { background:#f9f9f9; }
+  .status-approved { color: green; font-weight:bold; }
+  .status-rejected { color: red; font-weight:bold; }
+  .status-pending { color: orange; font-weight:bold; }
+  .search-bar { margin-bottom:1rem; }
+  .search-bar input { padding:0.5rem; width:300px; border:1px solid #ccc; border-radius:0.3rem; }
+  .action-btns button { margin-right:0.25rem; padding:0.35rem 0.75rem; border:none; border-radius:0.3rem; cursor:pointer; }
+  .approve-btn { background: green; color:white; }
+  .reject-btn { background: red; color:white; }
+</style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <h2>Admin Panel</h2>
+    <a href="admin.html"><ion-icon name="speedometer-outline"></ion-icon> Dashboard</a>
+    <a href="#"><ion-icon name="document-text-outline"></ion-icon> Leave Requests</a>
+  </div>
+
+  <div class="main">
+    <h1>Leave Applications</h1>
+
+    <button id="generatePDF" style="margin-bottom:1rem; padding:0.5rem 1rem;">Generate PDF</button>
+
+    <div class="dashboard-summary">
+      <div class="card">Total Requests: <span id="totalCount">0</span></div>
+      <div class="card">Pending: <span id="pendingCount">0</span></div>
+      <div class="card">Approved: <span id="approvedCount">0</span></div>
+      <div class="card">Rejected: <span id="rejectedCount">0</span></div>
+    </div>
+
+
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search by name or ID..." onkeyup="searchTable()" />
+    </div>
+
+    <table id="applicationsTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Staff ID</th>
+          <th>Department</th>
+          <th>Leave Type</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Days</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="leaveRequestsTable"></tbody>
+    </table>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = 'https://ayduvcxmluaetdfonvay.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF5ZHV2Y3htbHVhZXRkZm9udmF5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA2NjQ2MzIsImV4cCI6MjA2NjI0MDYzMn0.8AZXb4EnliycWurKJkkZxqeb2GHAok3YF0gqRqJFKHI';
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    async function loadLeaveRequests() {
+      const { data, error } = await supabase
+        .from('staff_leaves')
+        .select('id, staff_name, staff_id, staff_department, leave_type, staff_leave_from, staff_leave_to, leave_days, status')
+        .order('id', { ascending: false });
+
+      if (error) { console.error('Error fetching:', error.message); return; }
+
+      updateSummary(data);
+      const table = document.getElementById('leaveRequestsTable');
+      table.innerHTML = '';
+      data.forEach(row => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${row.staff_name}</td>
+          <td>${row.staff_id}</td>
+          <td>${row.staff_department}</td>
+          <td>${row.leave_type}</td>
+          <td>${row.staff_leave_from}</td>
+          <td>${row.staff_leave_to}</td>
+          <td>${row.leave_days}</td>
+          <td class="status-${row.status || 'pending'}">${row.status || 'pending'}</td>
+          <td class="action-btns">
+            <button class="approve-btn">Approve</button>
+            <button class="reject-btn">Reject</button>
+          </td>
+        `;
+        const [approveButton, rejectButton] = tr.querySelectorAll('button');
+        approveButton.addEventListener('click', () => updateStatus(row.id, 'approved'));
+        rejectButton.addEventListener('click', () => updateStatus(row.id, 'rejected'));
+        table.appendChild(tr);
+      });
+    }
+
+    function updateSummary(data) {
+      const total = data.length;
+      const pending = data.filter(r => (r.status || 'pending') === 'pending').length;
+      const approved = data.filter(r => r.status === 'approved').length;
+      const rejected = data.filter(r => r.status === 'rejected').length;
+      document.getElementById('totalCount').textContent = total;
+      document.getElementById('pendingCount').textContent = pending;
+      document.getElementById('approvedCount').textContent = approved;
+      document.getElementById('rejectedCount').textContent = rejected;
+    }
+
+    async function updateStatus(id, status) {
+      const { error } = await supabase.from('staff_leaves')
+        .update({ status })
+        .eq('id', id);
+      if (error) {
+        alert('Error updating status: ' + error.message);
+      } else {
+        loadLeaveRequests();
+      }
+    }
+
+    function searchTable() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const rows = document.querySelectorAll('#applicationsTable tbody tr');
+      rows.forEach(row => {
+        row.style.display = row.innerText.toLowerCase().includes(input) ? '' : 'none';
+      });
+    }
+
+    document.getElementById('generatePDF').addEventListener('click', generatePDF);
+
+    function generatePDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      const table = document.getElementById('leaveRequestsTable');
+      const data = Array.from(table.querySelectorAll('tr')).map(tr =>
+        Array.from(tr.querySelectorAll('td')).map(td => td.innerText)
+      );
+
+      data.forEach((row, index) => {
+        if (index > 0) doc.addPage();
+
+        doc.setFontSize(14);
+        doc.text('Ministry of Information, Communication and Digital Economy', 105, 20, { align: 'center' });
+        doc.text('State Department of Telecommunication and Broadcasting', 105, 28, { align: 'center' });
+        doc.setFontSize(12);
+        doc.text('LEAVE APPLICATION REPORT', 105, 40, { align: 'center' });
+
+  
+        doc.setFontSize(11);
+        const labels = ['Name', 'Staff ID', 'Department', 'Leave Type', 'From', 'To', 'Days', 'Status'];
+        let y = 60;
+        labels.forEach((label, i) => {
+          doc.text(`${label}:`, 14, y);
+          doc.text(row[i], 40, y);
+          doc.setDrawColor(0); 
+          doc.setLineWidth(0.1);
+          doc.setLineDash([1, 1]);
+          doc.line(40, y + 2, 180, y + 2);
+          doc.setLineDash([]);
+          y += 15;
+        });
+
+        doc.setDrawColor(200);
+        doc.setLineWidth(0.5);
+        doc.line(14, y + 5, 196, y + 5);
+      });
+
+      doc.save('leave_requests_formatted.pdf');
+    }
+
+    document.addEventListener('DOMContentLoaded', loadLeaveRequests);
+  </script>
+</body>
+</html>
